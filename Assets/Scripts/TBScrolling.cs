@@ -10,11 +10,17 @@ public class TBScrolling : MonoBehaviour
     public Text CTTBox;
     IEnumerator Start()
     {
-        yield return StartCoroutine(CText("Person", "Good morning!", 0));
+        yield return StartCoroutine(CText("Unknown", "Come on, wake up!", 1,1));
+        yield return new WaitForSeconds(2);
+        yield return StartCoroutine(CText("You", "*mmhh*", 0,1));
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-        yield return StartCoroutine(CText("Person", "How are you today?", 0));
+        yield return StartCoroutine(CText("", "*You wake up*", 0,1));
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-        yield return StartCoroutine(CText("Person", " bv fv h gf yjdfbbsfjb fd hf h vdf sf bh dfjh xfjhb xg bhjbhj biudbgk sgsudbgisdubsudbg usdbgusdfbgsdgbi sudgu b", 1));
+        yield return StartCoroutine(CText("You", "Who are you?", 0, 1));
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+        yield return StartCoroutine(CText("Spirit", "I'm Spirit!", 1, 1));
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+        yield return StartCoroutine(CText("Spirit", "and you are?", 1, 1));
     }
 
 
@@ -22,8 +28,9 @@ public class TBScrolling : MonoBehaviour
     {
         
     }
-    public IEnumerator CText(string cname, string ctext, int positioning)
+    public IEnumerator CText(string cname, string ctext, int positioning, float baseSpeed)
     {
+        float speed = baseSpeed / 100;
         if (positioning == 0) //left
         {
             playerText.transform.position = new Vector3(-4.75f, -1.2f, 0f);
@@ -39,10 +46,10 @@ public class TBScrolling : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space))
             {
-                waitTime = 0.01f;
+                waitTime = speed;
             } else
             {
-                waitTime = 0.05f;
+                waitTime = speed + 0.04f;
             }
             CTTBox.text = ctext.Substring(0, i + 1);
             yield return new WaitForSeconds(waitTime);
