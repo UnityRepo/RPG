@@ -5,15 +5,16 @@ using UnityEngine.UI;
 
 public class TBScrolling : MonoBehaviour
 {
+    public GameObject playerText;
     public Text CNTBox;
     public Text CTTBox;
     IEnumerator Start()
     {
-        yield return StartCoroutine(CText("Person", "Good morning!"));
+        yield return StartCoroutine(CText("Person", "Good morning!", 0));
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-        yield return StartCoroutine(CText("Person", "How are you today?"));
+        yield return StartCoroutine(CText("Person", "How are you today?", 0));
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-        yield return StartCoroutine(CText("Person", " bv fv h gf yjdfbbsfjb fd hf h vdf sf bh dfjh xfjhb xg bhjbhj biudbgk sgsudbgisdubsudbg usdbgusdfbgsdgbi sudgu b"));
+        yield return StartCoroutine(CText("Person", " bv fv h gf yjdfbbsfjb fd hf h vdf sf bh dfjh xfjhb xg bhjbhj biudbgk sgsudbgisdubsudbg usdbgusdfbgsdgbi sudgu b", 1));
     }
 
 
@@ -21,8 +22,17 @@ public class TBScrolling : MonoBehaviour
     {
         
     }
-    public IEnumerator CText(string cname, string ctext)
+    public IEnumerator CText(string cname, string ctext, int positioning)
     {
+        if (positioning == 0) //left
+        {
+            playerText.transform.position = new Vector3(-4.75f, -1.2f, 0f);
+            CNTBox.transform.position = new Vector3(500f, 416f, 0f);
+        } else if (positioning == 1) //right
+        {
+            playerText.transform.position = new Vector3(6f, -1.2f, 0f);
+            CNTBox.transform.position = new Vector3(1620f, 416f, 0f);
+        }
         float waitTime;
         CNTBox.text = cname + ":";
         for (int i = 0; i < ctext.Length; i++)
