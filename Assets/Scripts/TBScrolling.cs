@@ -14,7 +14,7 @@ public class TBScrolling : MonoBehaviour
         yield return new WaitForSeconds(2);
         yield return StartCoroutine(CText("You", "*mmhh*", 0,1));
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
-        yield return StartCoroutine(CText("", "*You wake up*", 0,1));
+        yield return StartCoroutine(CText("", "*You wake up*", 2,1));
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
         yield return StartCoroutine(CText("You", "Who are you?", 0, 1));
         yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
@@ -39,6 +39,10 @@ public class TBScrolling : MonoBehaviour
         {
             playerText.transform.position = new Vector3(6f, -1.2f, 0f);
             CNTBox.transform.position = new Vector3(1620f, 416f, 0f);
+        } else if (positioning == 2)
+        {
+            playerText.transform.position = new Vector3(-261.2001f, -218.0f, 0.0f);
+            CNTBox.transform.position = new Vector3(-261.2001f, -218.0f, 0.0f);
         }
         float waitTime;
         CNTBox.text = cname + ":";
