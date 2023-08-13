@@ -10,6 +10,7 @@ public class TBScrolling : MonoBehaviour
     public GameObject playerText;
     public Text CNTBox;
     public Text CTTBox;
+    public AudioSource textScroll;
     IEnumerator Start()
     {
         BTNCon.SetActive(false);
@@ -62,6 +63,7 @@ public class TBScrolling : MonoBehaviour
             {
                 waitTime = speed + 0.04f;
             }
+            textScroll.Play();
             CTTBox.text = ctext.Substring(0, i + 1);
             yield return new WaitForSeconds(waitTime);
         }
