@@ -6,27 +6,13 @@ using UnityEngine.UI;
 
 public class TBScrolling : MonoBehaviour
 {
+
+    public GameObject TBScroll;
     public GameObject BTNCon;
     public GameObject playerText;
     public Text CNTBox;
     public Text CTTBox;
     public AudioSource textScroll;
-    IEnumerator Start()
-    {
-        BTNCon.SetActive(false);
-        yield return StartCoroutine(CText("Unknown", "Come on, wake up!", 1,1));
-        yield return StartCoroutine(keyPress(2));
-        yield return StartCoroutine(CText("You", "*mmhh*", 0,1));
-        yield return StartCoroutine(keyPress(0));
-        yield return StartCoroutine(CText("", "*You wake up*", 2,1));
-        yield return StartCoroutine(keyPress(0));
-        yield return StartCoroutine(CText("You", "Who are you?", 0, 1));
-        yield return StartCoroutine(keyPress(0));
-        yield return StartCoroutine(CText("Spirit", "I'm Spirit!", 1, 1));
-        yield return StartCoroutine(keyPress(0));
-        yield return StartCoroutine(CText("Spirit", "and you are?", 1, 1));
-    }
-
 
     public IEnumerator keyPress(float waitTime)
     {
