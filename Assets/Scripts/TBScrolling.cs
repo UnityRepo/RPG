@@ -7,23 +7,39 @@ using UnityEngine.UI;
 public class TBScrolling : MonoBehaviour
 {
 
-    public GameObject TBScroll;
+    public GameObject TBody;
     public GameObject BTNCon;
     public GameObject playerText;
     public Text CNTBox;
     public Text CTTBox;
     public AudioSource textScroll;
+    public bool paused;
+
 
     public IEnumerator keyPress(float waitTime)
     {
         yield return new WaitForSeconds(waitTime);
         BTNCon.SetActive(true);
-        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Space));
+        yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
         BTNCon.SetActive(false);
+
+    }
+    public void close()
+    {
+        paused = false;
+        CNTBox.text = "";
+        CTTBox.text = "";
+        BTNCon.SetActive(false);
+        playerText.SetActive(false);
+        TBody.SetActive(false);
 
     }
     public IEnumerator CText(string cname, string ctext, int positioning, float baseSpeed)
     {
+        paused = true;
+        BTNCon.SetActive(true);
+        playerText.SetActive(true);
+        TBody.SetActive(true);
         float speed = baseSpeed / 100;
         if (positioning == 0) //left
         {

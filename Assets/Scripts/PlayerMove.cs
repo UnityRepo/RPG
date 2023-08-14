@@ -11,6 +11,7 @@ public class PlayerMove : MonoBehaviour
     public Text CNTBox;
     public Text CTTBox;
     public AudioSource textScroll;
+    bool paused;
 
     IEnumerator Start()
     {
@@ -19,24 +20,33 @@ public class PlayerMove : MonoBehaviour
         yield return StartCoroutine(scroll.CText("Unknown", "Come on, wake up!", 0, 1));
         yield return StartCoroutine(scroll.keyPress(0));
         yield return StartCoroutine(scroll.CText("Ok", "sus", 2, 1));
+        yield return StartCoroutine(scroll.keyPress(0));
+        yield return StartCoroutine(scroll.CText("imposter", "i dont know", 1, 1));
+        yield return StartCoroutine(scroll.keyPress(0));
+        scroll.close();
     }
     private void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        TBScrolling scroll = TBScroll.GetComponent<TBScrolling>();
+        if (scroll.paused == false)
         {
-            transform.position += Vector3.up * 3f * Time.deltaTime;
-        }
-        else if (Input.GetKey(KeyCode.A))
-        {
-            transform.position += Vector3.left * 3f * Time.deltaTime;
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            transform.position += Vector3.down * 3f * Time.deltaTime;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += Vector3.right * 3f * Time.deltaTime;
+
+            if (Input.GetKey(KeyCode.W))
+            {
+                transform.position += Vector3.up * 3f * Time.deltaTime;
+            }
+            else if (Input.GetKey(KeyCode.A))
+            {
+                transform.position += Vector3.left * 3f * Time.deltaTime;
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                transform.position += Vector3.down * 3f * Time.deltaTime;
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                transform.position += Vector3.right * 3f * Time.deltaTime;
+            }
         }
     }
 }
