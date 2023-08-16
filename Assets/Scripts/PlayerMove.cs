@@ -5,31 +5,43 @@ using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
-    public GameObject TBScroll;
-    public Rigidbody2D rb;
-    public GameObject BTNCon;
-    public GameObject playerText;
-    public Text CNTBox;
-    public Text CTTBox;
-    public AudioSource textScroll;
-    bool paused;
+    public GameObject TBScroll; //textbox scrolling script
+
+    public AudioSource textScroll; //duh textscrolling audio
 
 
-    IEnumerator Start()
+    IEnumerator Start() //corutine? im not sure
     {
+        TBScrolling scroll = TBScroll.GetComponent<TBScrolling>(); //yoinkinng scrolling script
 
-        TBScrolling scroll = TBScroll.GetComponent<TBScrolling>();
-        yield return StartCoroutine(scroll.CText("Unknown", "Come on, wake up!", 0, 1));
+        //dialog engine. (im so proud. kinda buggy tho)
+
+        yield return StartCoroutine(scroll.CText("Unknown", "Come on, wake up!", 1, 1));
         yield return StartCoroutine(scroll.keyPress(0));
-        yield return StartCoroutine(scroll.CText("Ok", "sus", 2, 1));
+
+        yield return StartCoroutine(scroll.CText("You", "*mmh*", 0, 1));
+        yield return StartCoroutine(scroll.keyPress(1));
+
+        yield return StartCoroutine(scroll.CText("", "*You wake up*", 2, 1));
         yield return StartCoroutine(scroll.keyPress(0));
-        yield return StartCoroutine(scroll.CText("imposter", "i dont know", 1, 1));
+
+        yield return StartCoroutine(scroll.CText("You", "Who are you?", 0, 1));
         yield return StartCoroutine(scroll.keyPress(0));
-        scroll.close();
+
+        yield return StartCoroutine(scroll.CText("Unknown", "Me?", 1, 1));
+        yield return StartCoroutine(scroll.keyPress(1));
+
+        yield return StartCoroutine(scroll.CText("Imposter", "I'm the imposter among us", 1, 1));
+        yield return StartCoroutine(scroll.keyPress(0));
+
+        scroll.close(); //"closing" the engine
     }
-    private void Update()
+    private void Update() //why private void? idk. autocorrect
     {
-        TBScrolling scroll = TBScroll.GetComponent<TBScrolling>();
+        TBScrolling scroll = TBScroll.GetComponent<TBScrolling>(); //yoinking again cuz im trash
+
+        //player movement? is the rigidbody an oprioin to move?
+
         if (scroll.paused == false)
         {
 

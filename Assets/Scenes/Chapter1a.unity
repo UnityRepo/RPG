@@ -1225,11 +1225,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TBScroll: {fileID: 2140665172}
-  rb: {fileID: 1588465370}
-  BTNCon: {fileID: 36818668}
-  playerText: {fileID: 1823273097}
-  CNTBox: {fileID: 802572774}
-  CTTBox: {fileID: 1298941276}
   textScroll: {fileID: 2059262961}
 --- !u!212 &1588465367
 SpriteRenderer:
@@ -1986,6 +1981,7 @@ MonoBehaviour:
   door: {fileID: 2076475756}
   locked: 1
   openDoor: {fileID: 849100356}
+  spriteRenderer: {fileID: 2076475754}
 --- !u!61 &2076475756
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2157,7 +2153,6 @@ MonoBehaviour:
   Player: {fileID: 1588465368}
   TBody: {fileID: 1405394923}
   playerText: {fileID: 1823273097}
-  BTNCon: {fileID: 36818668}
   ConCon: {fileID: 745220076}
   CNTBox: {fileID: 802572774}
   CTTBox: {fileID: 1298941276}

@@ -5,50 +5,50 @@ using UnityEngine;
 
 public class LockUnlock1 : MonoBehaviour
 {
-    public GameObject Key;
+    public GameObject Key; //actually necessary
 
-    public Sprite lockedSprite; 
-    public Sprite unlockedSprite;
+    public Sprite lockedSprite; //locked and unlocked door sprites
+    public Sprite unlockedSprite; 
 
-    public BoxCollider2D door;
+    public BoxCollider2D door; //door activ?
 
-    public bool locked = true;
-    bool obtained;
+    public bool locked = true; //is the door locked????
 
-    public AudioSource openDoor;
+    public AudioSource openDoor; //sfx babeeee
 
-    private SpriteRenderer spriteRenderer;
+    public SpriteRenderer spriteRenderer; //change of sprites
 
     void Start()
     {
-        Key.SetActive(true);
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        Key.SetActive(true); //WOw tHe KEy iS aCTiVe
     }
 
     void Update()
     {
-        KeyDetect1 key = Key.GetComponent<KeyDetect1>();
-        if (locked)
+        KeyDetect1 key = Key.GetComponent<KeyDetect1>(); //yoinking script
+
+        if (locked) //is it locked?
         {
             spriteRenderer.sprite = lockedSprite;
             door.enabled = true;
             
         }
-        else if (locked == false)
+        else if (locked == false) //nah, it aint locked
         {
             spriteRenderer.sprite = unlockedSprite;
             door.enabled = false;
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) //im trash, ok?
     {
-        KeyDetect1 key = Key.GetComponent<KeyDetect1>();
-        if (key.obtained)
+        KeyDetect1 key = Key.GetComponent<KeyDetect1>(); //yoinking script again
+
+        if (key.obtained) //u got key?
         {
-            locked = false;
-            key.obtained = false;
-            Key.SetActive(false);
-            openDoor.Play();
+            locked = false; //alr imma not ock
+            key.obtained = false; //change to not obtained
+            Key.SetActive(false); //snaps it from existince
+            openDoor.Play(); //oh look a sound
         }
     }
 }
