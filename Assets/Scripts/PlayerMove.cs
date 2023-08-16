@@ -6,12 +6,14 @@ using UnityEngine.UI;
 public class PlayerMove : MonoBehaviour
 {
     public GameObject TBScroll;
+    public Rigidbody2D rb;
     public GameObject BTNCon;
     public GameObject playerText;
     public Text CNTBox;
     public Text CTTBox;
     public AudioSource textScroll;
     bool paused;
+
 
     IEnumerator Start()
     {
@@ -33,19 +35,19 @@ public class PlayerMove : MonoBehaviour
 
             if (Input.GetKey(KeyCode.W))
             {
-                transform.position += Vector3.up * 3f * Time.deltaTime;
+                transform.position += Vector3.up * 4f * Time.deltaTime;
             }
             else if (Input.GetKey(KeyCode.A))
             {
-                transform.position += Vector3.left * 3f * Time.deltaTime;
+                transform.position += Vector3.left * 4f * Time.deltaTime;
             }
             else if (Input.GetKey(KeyCode.S))
             {
-                transform.position += Vector3.down * 3f * Time.deltaTime;
+                transform.position += Vector3.down * 4f * Time.deltaTime;
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                transform.position += Vector3.right * 3f * Time.deltaTime;
+                transform.position += Vector3.right * 4f * Time.deltaTime;
             }
         }
     }
