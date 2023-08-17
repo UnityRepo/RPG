@@ -31,7 +31,16 @@ public class PlayerMove : MonoBehaviour
         yield return StartCoroutine(scroll.CText("Unknown", "Me?", 1, 1));
         yield return StartCoroutine(scroll.keyPress(1));
 
-        yield return StartCoroutine(scroll.CText("Imposter", "I'm the imposter among us", 1, 1));
+        yield return StartCoroutine(scroll.CText("Spirit", "I'm Spirit!", 1, 1));
+        yield return StartCoroutine(scroll.keyPress(0));
+
+        yield return StartCoroutine(scroll.CText("Spirit", "I can see that you're awake.", 1, 1));
+        yield return StartCoroutine(scroll.keyPress(0));
+
+        yield return StartCoroutine(scroll.CText("Spirit", "Oh, I need to tell you something!", 1, 1));
+        yield return StartCoroutine(scroll.keyPress(0));
+
+        yield return StartCoroutine(scroll.CText("Spirit", "Can you look for a key to get outside?", 1, 1));
         yield return StartCoroutine(scroll.keyPress(0));
 
         scroll.close(); //"closing" the engine
