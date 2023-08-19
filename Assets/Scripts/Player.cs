@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
@@ -12,12 +13,19 @@ public class PlayerMove : MonoBehaviour
 
     public GameObject Navi; //fairyyyyyyyyyyyyyyyyyyy
 
+    public GameObject BlackScreen;
+
 
     IEnumerator Start() //corutine? im not sure
     {
+
         Navi.transform.position = new Vector3 (-12, 0.15f, 0); //scratch ptsd
 
         TBScrolling text = TBScroll.GetComponent<TBScrolling>(); //yoinkinng scrolling script
+
+        SpriteRenderer SmokeScreen = BlackScreen.GetComponent<SpriteRenderer>();
+
+        SmokeScreen.color = new Color(0, 0, 0, 1);
 
         //dialog engine. (im so proud. kinda buggy tho)
 
@@ -27,8 +35,23 @@ public class PlayerMove : MonoBehaviour
         yield return StartCoroutine(text.CText("You", "*mmh*", 0, 1));
         yield return StartCoroutine(text.keyPress(1));
 
-        yield return StartCoroutine(text.CText("", "*You wake up*", 2, 1));
-        yield return StartCoroutine(text.keyPress(0));
+        yield return new WaitForSeconds(0.5f);
+        SmokeScreen.color = new Color(0, 0, 0, 0.8f);
+
+        yield return new WaitForSeconds(0.5f);
+        SmokeScreen.color = new Color(0, 0, 0, 0.6f);
+
+        yield return new WaitForSeconds(0.5f);
+        SmokeScreen.color = new Color(0, 0, 0, 0.4f);
+
+        yield return new WaitForSeconds(0.5f);
+        SmokeScreen.color = new Color(0, 0, 0, 0.2f);
+
+        yield return new WaitForSeconds(0.5f);
+        SmokeScreen.color = new Color(0, 0, 0, 0);
+
+        yield return StartCoroutine(text.CText("You", "*You wake up*", 0, 1));
+        yield return StartCoroutine(text.keyPress(1));
 
         yield return StartCoroutine(text.CText("You", "Who are you?", 0, 1));
         yield return StartCoroutine(text.keyPress(0));
@@ -45,7 +68,10 @@ public class PlayerMove : MonoBehaviour
         yield return StartCoroutine(text.CText("Spirit", "Oh, I need to tell you something!", 1, 1));
         yield return StartCoroutine(text.keyPress(0));
 
-        yield return StartCoroutine(text.CText("Spirit", "Can you look for a key to get outside?", 1, 1));
+        yield return StartCoroutine(text.CText("Spirit", "I would prefer if you were to come outside first.", 1, 1));
+        yield return StartCoroutine(text.keyPress(0));
+
+        yield return StartCoroutine(text.CText("Spirit", "There should be a key to get outside?", 1, 1));
         yield return StartCoroutine(text.keyPress(0));
 
         text.close(); //"closing" the engine
@@ -166,6 +192,10 @@ public class PlayerMove : MonoBehaviour
             yield return StartCoroutine(text.CText("Spirit", "Hop in!", 1, 1));
             yield return StartCoroutine(text.keyPress(0));
             text.close();
+        } 
+        else if (collision.name == "portal")
+        {
+            transform.position = new Vector3(-12, 0.15f, 0); //placeholder
         }
     }
 }
