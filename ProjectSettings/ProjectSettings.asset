@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
+  companyName: Company
   productName: RPG
   defaultCursor: {fileID: 2800000, guid: b57be4bfa29ef2d4a8dc9ed47ad53999, type: 3}
   cursorHotspot: {x: 0, y: 0}

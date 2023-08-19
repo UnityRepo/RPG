@@ -57,19 +57,19 @@ public class TBScrolling : MonoBehaviour
         float speed = baseSpeed / 100; //eaiser speed modifier
         if (positioning == 0) //left
         {
-            playerText.transform.position = new Vector3(Player.position.x - 4.75f,Player.position.y - 1.2f, 0f);
-            CNTBox.transform.position = new Vector3(500f, 416f, 0f);
+            playerText.transform.position = new Vector3(Player.position.x - 4.4f,Player.position.y - 1.1f, 0);
+            CNTBox.transform.position = new Vector3(Player.position.x - 4.4f, Player.position.y - 1.1f, 0);
         } else if (positioning == 1) //right
         {
-            playerText.transform.position = new Vector3(Player.position.x + 6f, Player.position.y - 1.2f, 0f);
-            CNTBox.transform.position = new Vector3(1620f, 416f, 0f);
+            playerText.transform.position = new Vector3(Player.position.x + 4.4f, Player.position.y - 1.2f, 0);
+            CNTBox.transform.position = new Vector3(Player.position.x + 4.4f, Player.position.y - 1.2f, 0);
         } else if (positioning == 2) //gone
         {
-            playerText.transform.position = new Vector3(Player.position.x - 261.2001f, Player.position.y - 218.0f, 0.0f);
-            CNTBox.transform.position = new Vector3(-261.2001f, -218.0f, 0.0f);
+            playerText.transform.position = new Vector3(Player.position.x - 261.2001f, Player.position.y - 218.0f, 0);
+            CNTBox.transform.position = new Vector3(Player.position.x - 261.2001f, Player.position.y - 218.0f, 0);
         }
 
-        TBody.transform.position = new Vector3(Player.position.x + 2, Player.position.y - 3.1f, Player.position.z - 4.5f); //some reason for the teleport textbox script thing is here. wait nevermind it makes total sense.
+        TBody.transform.position = new Vector3(Player.position.x, Player.position.y - 3.1f, Player.position.z - 4.5f); //some reason for the teleport textbox script thing is here. wait nevermind it makes total sense.
         ConCon.transform.position = new Vector3(Player.position.x, Player.position.y, 0); //since?
 
         float waitTime; //2 waittime variables
