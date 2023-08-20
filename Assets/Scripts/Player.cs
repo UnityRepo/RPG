@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
 using UnityEngine.SceneManagement;
 
-public class PlayerMove : MonoBehaviour
+public class Player : MonoBehaviour
 {
     public GameObject TBScroll; //textbox scrolling script
 
@@ -21,84 +22,107 @@ public class PlayerMove : MonoBehaviour
 
     public GameObject PauseScreen;
 
+    public SaveData saveData;
+
+    public bool doneFirst;
+    
 
     IEnumerator Start() //corutine? im not sure
     {
-        PauseScreen.SetActive(false);
 
-        animator.SetBool("Sleeping", true);
+        string filePath = Application.persistentDataPath + "/Data.json";
+        if (System.IO.File.Exists(filePath))
+        {
+            saveData.LoadFromJson(); 
+        }
+        else
+        {
+            System.IO.File.WriteAllText(filePath, "{\"x\":4,\"y\":4.35,\"z\":0.0,\"doneFirst\":false}");
+        }
 
-        Navi.transform.position = new Vector3 (-12, 0.15f, 0); //scratch ptsd
 
-        TBScrolling text = TBScroll.GetComponent<TBScrolling>(); //yoinkinng scrolling script
+        if (doneFirst == false)
+        {
+            PauseScreen.SetActive(false);
 
-        SpriteRenderer SmokeScreen = BlackScreen.GetComponent<SpriteRenderer>();
+            animator.SetBool("Sleeping", true);
 
-        SmokeScreen.color = new Color(0, 0, 0, 1);
+            Navi.transform.position = new Vector3(-12, 0.15f, 0); //scratch ptsd
 
-        //dialog engine. (im so proud. kinda buggy tho)
-        yield return StartCoroutine(text.CText("itdytfs", "", 1, 1));
+            TBScrolling text = TBScroll.GetComponent<TBScrolling>(); //yoinkinng scrolling script
 
-        yield return StartCoroutine(text.CText("Unknown", "Come on, wake up!", 1, 1));
-        yield return StartCoroutine(text.keyPress(0));
+            SpriteRenderer SmokeScreen = BlackScreen.GetComponent<SpriteRenderer>();
 
-        yield return StartCoroutine(text.CText("You", "*mmh*", 0, 1));
-        yield return StartCoroutine(text.keyPress(1));
+            SmokeScreen.color = new Color(0, 0, 0, 1);
 
-        yield return new WaitForSeconds(0.5f);
-        SmokeScreen.color = new Color(0, 0, 0, 0.8f);
+            //dialog engine. (im so proud. kinda buggy tho)
+            yield return StartCoroutine(text.CText("nice!", "", 1, 1));
 
-        yield return new WaitForSeconds(0.5f);
-        SmokeScreen.color = new Color(0, 0, 0, 0.6f);
+            yield return StartCoroutine(text.CText("Unknown", "Come on, wake up!", 1, 1));
+            yield return StartCoroutine(text.keyPress(0));
 
-        yield return new WaitForSeconds(0.5f);
-        SmokeScreen.color = new Color(0, 0, 0, 0.4f);
+            yield return StartCoroutine(text.CText("You", "*mmh*", 0, 1));
+            yield return StartCoroutine(text.keyPress(1));
 
-        yield return new WaitForSeconds(0.5f);
-        SmokeScreen.color = new Color(0, 0, 0, 0.2f);
+            yield return new WaitForSeconds(0.5f);
+            SmokeScreen.color = new Color(0, 0, 0, 0.8f);
 
-        yield return new WaitForSeconds(0.5f);
-        SmokeScreen.color = new Color(0, 0, 0, 0);
+            yield return new WaitForSeconds(0.5f);
+            SmokeScreen.color = new Color(0, 0, 0, 0.6f);
 
-        animator.SetBool("Sleeping", false);
+            yield return new WaitForSeconds(0.5f);
+            SmokeScreen.color = new Color(0, 0, 0, 0.4f);
 
-        yield return StartCoroutine(text.CText("You", "*You wake up*", 2, 1));
-        yield return StartCoroutine(text.keyPress(1));
+            yield return new WaitForSeconds(0.5f);
+            SmokeScreen.color = new Color(0, 0, 0, 0.2f);
 
-        yield return StartCoroutine(text.CText("Spirit", "Oh, so you're finally awake.", 1, 1));
-        yield return StartCoroutine(text.keyPress(0));
+            yield return new WaitForSeconds(0.5f);
+            SmokeScreen.color = new Color(0, 0, 0, 0);
 
-        yield return StartCoroutine(text.CText("Spirit", "You ask who I am?", 1, 1));
-        yield return StartCoroutine(text.keyPress(0));
+            animator.SetBool("Sleeping", false);
 
-        yield return StartCoroutine(text.CText("Spirit", "Already jumping to questions now are we?", 1, 1));
-        yield return StartCoroutine(text.keyPress(0));
+            yield return StartCoroutine(text.CText("You", "*You wake up*", 2, 1));
+            yield return StartCoroutine(text.keyPress(1));
 
-        yield return StartCoroutine(text.CText("Spirit", "I'm Spirit!", 1, 1));
-        yield return StartCoroutine(text.keyPress(0));
+            yield return StartCoroutine(text.CText("Spirit", "Oh, so you're finally awake.", 1, 1));
+            yield return StartCoroutine(text.keyPress(0));
 
-        yield return StartCoroutine(text.CText("Spirit", "Why am I outside, you ask?", 1, 1));
-        yield return StartCoroutine(text.keyPress(1));
+            yield return StartCoroutine(text.CText("Spirit", "You ask who I am?", 1, 1));
+            yield return StartCoroutine(text.keyPress(0));
 
-        yield return StartCoroutine(text.CText("Spirit", "I don't know.", 1, 1));
-        yield return StartCoroutine(text.keyPress(1));
+            yield return StartCoroutine(text.CText("Spirit", "Already jumping to questions now are we?", 1, 1));
+            yield return StartCoroutine(text.keyPress(0));
 
-        yield return StartCoroutine(text.CText("Spirit", "Just to teaching you some mechanics.", 1, 1));
-        yield return StartCoroutine(text.keyPress(1));
+            yield return StartCoroutine(text.CText("Spirit", "I'm Spirit!", 1, 1));
+            yield return StartCoroutine(text.keyPress(0));
 
-        yield return StartCoroutine(text.CText("Spirit", "Speaking of, I need to tell you something!", 1, 1));
-        yield return StartCoroutine(text.keyPress(0));
+            yield return StartCoroutine(text.CText("Spirit", "Why am I outside, you ask?", 1, 1));
+            yield return StartCoroutine(text.keyPress(1));
 
-        yield return StartCoroutine(text.CText("Spirit", "I would prefer if you were to come outside first.", 1, 1));
-        yield return StartCoroutine(text.keyPress(0));
+            yield return StartCoroutine(text.CText("Spirit", "I don't know.", 1, 1));
+            yield return StartCoroutine(text.keyPress(1));
 
-        yield return StartCoroutine(text.CText("Spirit", "There should be a key to get outside.", 1, 1));
-        yield return StartCoroutine(text.keyPress(0));
+            yield return StartCoroutine(text.CText("Spirit", "Just teaching you some mechanics.", 1, 1));
+            yield return StartCoroutine(text.keyPress(1));
 
-        text.close(); //"closing" the engine
+            yield return StartCoroutine(text.CText("Spirit", "Speaking of, I need to tell you something!", 1, 1));
+            yield return StartCoroutine(text.keyPress(0));
+
+            yield return StartCoroutine(text.CText("Spirit", "I would prefer if you were to come outside first.", 1, 1));
+            yield return StartCoroutine(text.keyPress(0));
+
+            yield return StartCoroutine(text.CText("Spirit", "There should be a key to get outside.", 1, 1));
+            yield return StartCoroutine(text.keyPress(0));
+
+            text.close(); //"closing" the engine
+
+            doneFirst = true;
+        }
+           
     }
     private void Update() //why private void? idk. autocorrect
     {
+
         SpriteRenderer SmokeScreen = BlackScreen.GetComponent<SpriteRenderer>();
 
         TBScrolling text = TBScroll.GetComponent<TBScrolling>(); //yoinking again cuz im trash
@@ -132,7 +156,6 @@ public class PlayerMove : MonoBehaviour
             {
                 text.paused = true;
                 SmokeScreen.color = new Color(0, 0, 0, 0.8f);
-                Debug.Log("on");
                 PauseScreen.SetActive(true);
             }
             else
