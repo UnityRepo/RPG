@@ -47,6 +47,14 @@ public class SaveData : MonoBehaviour
             pScript.doneFirst = data.doneFirst;
         }
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F11))
+        {
+            Screen.fullScreen = !Screen.fullScreen;
+        }
+    }
+
 }
 
 [System.Serializable]
