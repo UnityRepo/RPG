@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     public SaveData saveData;
 
     public bool doneFirst;
+    public int textCounter;
     
 
     IEnumerator Start() //corutine? im not sure
@@ -190,7 +191,7 @@ public class Player : MonoBehaviour
     IEnumerator OnTriggerEnter2D(Collider2D collision)
     {
         TBScrolling text = TBScroll.GetComponent<TBScrolling>();
-        if (collision.name == "Spirit1")
+        if (collision.name == "Spirit1" && textCounter == 0)
         {
             yield return StartCoroutine(text.CText("Spirit", "Nice!", 1, 1));
             yield return StartCoroutine(text.keyPress(0));
@@ -262,9 +263,9 @@ public class Player : MonoBehaviour
 
             Navi.transform.position = new Vector3(-4.2f, 19, 0);
 
-
+            textCounter = 1;
         }
-        else if (collision.name == "Spirit2")
+        else if (collision.name == "Spirit2" && textCounter == 1)
         {
             yield return StartCoroutine(text.CText("Spirit", "Here it is!", 1, 1));
             yield return StartCoroutine(text.keyPress(0));
@@ -274,7 +275,10 @@ public class Player : MonoBehaviour
 
             yield return StartCoroutine(text.CText("Spirit", "Hop in!", 1, 1));
             yield return StartCoroutine(text.keyPress(0));
+
             text.close();
+
+            textCounter = 2;
         } 
         else if (collision.name == "portal")
         {

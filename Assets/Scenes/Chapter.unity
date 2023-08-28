@@ -3465,6 +3465,7 @@ MonoBehaviour:
     y: 0
     z: 0
     doneFirst: 0
+    textCounter: 0
   player: {fileID: 1588465368}
   PObject: {fileID: 1588465365}
 --- !u!4 &1211960608
@@ -4278,10 +4279,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1588465368}
+  - component: {fileID: 1588465366}
+  - component: {fileID: 1588465367}
   - component: {fileID: 1588465369}
   - component: {fileID: 1588465370}
-  - component: {fileID: 1588465367}
-  - component: {fileID: 1588465366}
   - component: {fileID: 1588465371}
   m_Layer: 0
   m_Name: Player
@@ -4311,6 +4312,7 @@ MonoBehaviour:
   PauseScreen: {fileID: 1609639836}
   saveData: {fileID: 1211960607}
   doneFirst: 0
+  textCounter: 0
 --- !u!212 &1588465367
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -19,7 +19,10 @@ public class SaveData : MonoBehaviour
             data.x = player.position.x;
             data.y = player.position.y;
             data.z = player.position.z;
+
             data.doneFirst = pScript.doneFirst;
+
+            data.textCounter = pScript.textCounter;
         }
         string Data = JsonUtility.ToJson(data);
         string filePath = Application.persistentDataPath + "/Data.json";
@@ -43,8 +46,10 @@ public class SaveData : MonoBehaviour
             data.x = player.position.x;
             data.y = player.position.y;
             data.z = player.position.z;
-            //data.doneFirst = pScript.doneFirst;
+
             pScript.doneFirst = data.doneFirst;
+
+            pScript.textCounter = data.textCounter;
         }
     }
     private void Update()
@@ -65,4 +70,5 @@ public class Data
     public float z;
 
     public bool doneFirst;
+    public int textCounter;
 }
