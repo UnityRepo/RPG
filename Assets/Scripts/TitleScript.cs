@@ -8,22 +8,56 @@ public class TitleScript : MonoBehaviour
 {
     public GameObject BlackScreen;
 
-    public Button yourButton;
-    // Start is called before the first frame update
+    public GameObject tipsContainer;
 
-    // Update is called once per frame
+    public bool unclickable;
+    public bool onTipsScreen;
 
     public void close()
     {
-        Application.Quit();
+        if (unclickable == false)
+        {
+            Application.Quit();
+        }
+    }
+
+    public void closeTips()
+    {
+        SpriteRenderer SmokeScreen = BlackScreen.GetComponent<SpriteRenderer>();
+
+        tipsContainer.SetActive(false);
+
+        if (unclickable == true)
+        {
+            unclickable = false; onTipsScreen = false;
+
+            SmokeScreen.color = new Color(0, 0, 0, 0);
+        }
+    }
+
+    public void tips()
+    {
+        SpriteRenderer SmokeScreen = BlackScreen.GetComponent<SpriteRenderer>();
+
+        tipsContainer.SetActive(true);
+
+        if (unclickable == false)
+        {
+            unclickable = true; onTipsScreen = true;
+
+            SmokeScreen.color = new Color(0, 0, 0, 0.95f);
+        }
     }
 
     public void play()
     {
         SpriteRenderer SmokeScreen = BlackScreen.GetComponent<SpriteRenderer>();
 
-        SmokeScreen.color = new Color(0, 0, 0, 0);
-        StartCoroutine(FadeIn(SmokeScreen));
+        if (unclickable == false) {
+
+            SmokeScreen.color = new Color(0, 0, 0, 0);
+            StartCoroutine(FadeIn(SmokeScreen));
+        }
     }
 
     IEnumerator FadeIn(SpriteRenderer SmokeScreen)
@@ -45,8 +79,4 @@ public class TitleScript : MonoBehaviour
 
         SceneManager.LoadScene("Chapter");
     }
-
-
-
-
 }
