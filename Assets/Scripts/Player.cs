@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.IO;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -24,12 +25,15 @@ public class Player : MonoBehaviour
 
     public SaveData saveData;
 
+    public GameObject Locked;
+
     public bool doneFirst;
     public int textCounter;
     
 
     IEnumerator Start() //corutine? im not sure
     {
+        LockUnlock1 locked = Locked.GetComponent<LockUnlock1>();
 
         string filePath = Application.persistentDataPath + "/Data.json";
         if (System.IO.File.Exists(filePath))
@@ -41,6 +45,17 @@ public class Player : MonoBehaviour
             System.IO.File.WriteAllText(filePath, "{\"x\":4,\"y\":4.35,\"z\":0.0,\"doneFirst\":false}");
         }
 
+        if (textCounter == 1)
+        {
+            Navi.transform.position = new Vector3(-4.2f, 19, 0);
+        }
+        if (textCounter > 0)
+        {
+            locked.locked = false;
+        } else
+        {
+            locked.locked = true;
+        }
 
         if (doneFirst == false)
         {

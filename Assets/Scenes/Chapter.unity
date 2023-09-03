@@ -4311,6 +4311,7 @@ MonoBehaviour:
   animator: {fileID: 1588465371}
   PauseScreen: {fileID: 1609639836}
   saveData: {fileID: 1211960607}
+  Locked: {fileID: 2076475746}
   doneFirst: 0
   textCounter: 0
 --- !u!212 &1588465367
