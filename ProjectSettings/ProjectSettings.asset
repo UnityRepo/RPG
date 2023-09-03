@@ -12,8 +12,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: TheSemond Inc.
-  productName: RPG
+  companyName: Thesemond Inc
+  productName: Skyrise
   defaultCursor: {fileID: 2800000, guid: b57be4bfa29ef2d4a8dc9ed47ad53999, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -42,7 +42,7 @@ PlayerSettings:
   m_SplashScreenLogos:
   - logo: {fileID: 21300000, guid: 04fd84d7a6cf6d94a8b1ae44da929466, type: 3}
     duration: 2
-  - logo: {fileID: 21300000, guid: 953e9dec7d4e082428899b174a1530a1, type: 3}
+  - logo: {fileID: 21300000, guid: b78ceb65d6421584c838f809cd30c4e9, type: 3}
     duration: 2
   - logo: {fileID: 10404, guid: 0000000000000000f000000000000000, type: 0}
     duration: 2
@@ -139,7 +139,7 @@ PlayerSettings:
   vulkanEnableLateAcquireNextImage: 0
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
-  bundleVersion: Alpha 7
+  bundleVersion: Alpha 7.5
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -285,7 +285,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 953e9dec7d4e082428899b174a1530a1, type: 3}
+      m_Icon: {fileID: 2800000, guid: b78ceb65d6421584c838f809cd30c4e9, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0
