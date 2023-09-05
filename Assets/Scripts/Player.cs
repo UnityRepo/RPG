@@ -29,7 +29,9 @@ public class Player : MonoBehaviour
 
     public bool doneFirst;
     public int textCounter;
-    
+
+    public int ScreenX;
+    public int ScreenY;
 
     IEnumerator Start() //corutine? im not sure
     {

@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using UnityEngine.UI;
 
 public class SaveData : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class SaveData : MonoBehaviour
 
     public Transform player;
     public GameObject PObject;
+
+    public GameObject Screenx;
+    public GameObject Screeny;
 
     public void SaveToJson()
     {
@@ -23,6 +27,20 @@ public class SaveData : MonoBehaviour
             data.doneFirst = pScript.doneFirst;
 
             data.textCounter = pScript.textCounter;
+        }
+        else if (SceneManager.GetActiveScene().name == "Title")
+        {
+            string filePaths = Application.persistentDataPath + "/Data.json";
+            string Data2 = System.IO.File.ReadAllText(filePaths);
+
+            data = JsonUtility.FromJson<Data>(Data2);
+
+            Screenx.GetComponent<InputField>();
+
+            data.ScreenX = int.Parse(Screenx.GetComponent<InputField>().text);
+            data.ScreenY = int.Parse(Screeny.GetComponent<InputField>().text);
+
+            Debug.Log(data.ScreenX + "" + data.ScreenY);
         }
         string Data = JsonUtility.ToJson(data);
         string filePath = Application.persistentDataPath + "/Data.json";
@@ -50,13 +68,36 @@ public class SaveData : MonoBehaviour
             pScript.doneFirst = data.doneFirst;
 
             pScript.textCounter = data.textCounter;
+
+            pScript.ScreenX = data.ScreenX;
+            pScript.ScreenY = data.ScreenY;
+        }
+    }
+
+    public void loadScreen()
+    {
+        if (!Screen.fullScreen)
+        {
+            Screen.SetResolution(data.ScreenX, data.ScreenY, true);
+        }
+        else
+        {
+            Screen.fullScreen = false;
+            Screen.SetResolution(data.ScreenX, data.ScreenY, true);
         }
     }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.F11))
         {
-            Screen.fullScreen = !Screen.fullScreen;
+            if (!Screen.fullScreen)
+            {
+                Screen.SetResolution(data.ScreenX, data.ScreenY, true);
+            }
+            else
+            {
+                Screen.fullScreen = false;
+            }
         }
     }
 
@@ -71,4 +112,7 @@ public class Data
 
     public bool doneFirst;
     public int textCounter;
+
+    public int ScreenX;
+    public int ScreenY;
 }

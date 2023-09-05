@@ -9,9 +9,11 @@ public class TitleScript : MonoBehaviour
     public GameObject BlackScreen;
 
     public GameObject tipsContainer;
+    public GameObject settingsContainer;
 
     public bool unclickable;
     public bool onTipsScreen;
+    public bool onSettingsScreen;
 
     public void close()
     {
@@ -21,11 +23,12 @@ public class TitleScript : MonoBehaviour
         }
     }
 
-    public void closeTips()
+    public void closeOverlay()
     {
         SpriteRenderer SmokeScreen = BlackScreen.GetComponent<SpriteRenderer>();
 
         tipsContainer.SetActive(false);
+        settingsContainer.SetActive(false);
 
         if (unclickable == true)
         {
@@ -39,11 +42,23 @@ public class TitleScript : MonoBehaviour
     {
         SpriteRenderer SmokeScreen = BlackScreen.GetComponent<SpriteRenderer>();
 
-        tipsContainer.SetActive(true);
+        if (unclickable == false)
+        {
+            tipsContainer.SetActive(true);
+            unclickable = true; onTipsScreen = true;
+
+            SmokeScreen.color = new Color(0, 0, 0, 0.95f);
+        }
+    }
+
+    public void settings()
+    {
+        SpriteRenderer SmokeScreen = BlackScreen.GetComponent<SpriteRenderer>();
 
         if (unclickable == false)
         {
-            unclickable = true; onTipsScreen = true;
+            settingsContainer.SetActive(true);
+            unclickable = true; onSettingsScreen = true;
 
             SmokeScreen.color = new Color(0, 0, 0, 0.95f);
         }
